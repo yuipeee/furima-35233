@@ -16,35 +16,33 @@
 ### Association
 
 - has_many :products
-- has_many :cards
+- has_many :purchases
 
 ## products テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| name          | string     | null: false                    |
-| description   | text       | null: false                    |
-| category      | string     | null: false                    |
-| status        | string     | null: false                    |
-| shipping_cost | integer    | null: false                    |
-| shipping_area | string     | null: false                    |
-| shipping_days | integer    | null: false                    |
-| price         | integer    | null: false                    |
-| user_id       | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| status_id        | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| shipping_days_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- bas_one    :card
+- bas_one    :purchase
 
-## cards テーブル
+## purchases テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| number  | integer    | null: false,                   |
-| date    | datetime   | null: false,                   |
-| cord    | integer    | null: false,                   |
-| user_id | references | null: false, foreign_key: true |
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user       | references | null: false, foreign_key: true |
+| product    | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -54,15 +52,16 @@
 
 ## shippings テーブル
 
-| Column        | Type     | Options     |
-| ------------- | -------- | ----------- |
-| post_code     | integer  | null: false |
-| prefecture    | string   | null: false |
-| city          | string   | null: false |
-| address       | integer  | null: false |
-| building_name | string   |             |
-| phone_number  | integer  | null: false |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_code        | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchases        | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :card
+- belongs_to :purchase
