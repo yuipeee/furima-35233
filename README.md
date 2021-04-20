@@ -48,7 +48,7 @@
 
 - belongs_to :user
 - belongs_to :product
-- hhas_one    :shipping
+- has_one    :shipping
 
 ## shippings テーブル
 
