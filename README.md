@@ -5,8 +5,8 @@
 | Column             | Type     | Options                   |
 | ------------------ | -------- | ------------------------- |
 | nickname           | string   | null: false               |
-| email              | string   | null: false               |
-| encrypted_password | string   | null: false, unique: true |
+| email              | string   | null: false  unique: true |
+| encrypted_password | string   | null: false               |
 | first_name         | string   | null: false               |
 | first_name_kana    | string   | null: false               |
 | last_name          | string   | null: false               |
@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- bas_one    :purchase
+- has_one    :purchase
 
 ## purchases テーブル
 
@@ -60,7 +60,7 @@
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
 | phone_number     | string     | null: false                    |
-| purchases        | references | null: false, foreign_key: true |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 
