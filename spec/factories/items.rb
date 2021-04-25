@@ -8,7 +8,7 @@ FactoryBot.define do
     shipping_area_id     {2}
     shipping_day_id      {2}
     price                {'1000'}
-    image                {item-image}
+    image                {furima-logo-color.png}
     association          :user
   end
 end
