@@ -26,31 +26,31 @@ RSpec.describe Item, type: :model do
       end
 
       it "category_idが未選択では保存できない" do
-        @item.category_id = 0
+        @item.category_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it "status_idが未選択では保存できない" do
-        @item.status_id = 0
+        @item.status_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
 
       it "shipping_cost_idが未選択では保存できない" do
-        @item.shipping_cost_id = 0
+        @item.shipping_cost_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping cost can't be blank")
       end
 
       it "shipping_area_idが未選択では保存できない" do
-        @item.shipping_area_id = 0
+        @item.shipping_area_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
 
       it "shipping_day_idが未選択では保存できない" do
-        @item.shipping_day_id = 0
+        @item.shipping_day_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
@@ -68,15 +68,15 @@ RSpec.describe Item, type: :model do
       end
 
       it "priceが設定範囲外だと保存できない" do
-       @image.price = 100
+       @item.price = "100"
        @item.valid?
-       expect(@item.errors.full_messages).ro include("Price Out of setting range")
+       expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
-       it "priceが全角数字だと保存できない" do
-        @image.price = １２３
+       it "priceは半角数字のみでないと保存できない" do
+        @item.price = "数字"
         @item.valid?
-        expect(@item.errors.full_messages).ro include("Price is invalid")
+        expect(@item.errors.full_messages).to include("Price is not a number")
        end
     end
   end
