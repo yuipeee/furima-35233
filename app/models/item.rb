@@ -26,6 +26,7 @@ class Item < ApplicationRecord
   validates :status_id
   validates :shipping_cost_id
   validates :shipping_area_id
+  validates :shipping_day_id
   end
 
 end
