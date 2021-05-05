@@ -10,7 +10,7 @@ RSpec.describe OrderShipping, type: :model do
 
    describe '購入商品の保存' do
     context '保存できる場合' do
-      it "post_code、shipping_area_id、city、address、phone_numberが存在すれば登録できる" do
+      it "post_code、shipping_area_id、city、address、phone_number,tokenが存在すれば登録できる" do
         expect(@shipping).to be_valid
       end
     end
@@ -44,6 +44,12 @@ RSpec.describe OrderShipping, type: :model do
         @shipping.phone_number = ''
         @shipping.valid?
         expect(@shipping.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+      it "tokenが空では保存できない" do
+        @shipping.token = nil
+        @shipping.valid?
+        expect(@shipping.errors.full_messages).to include("Token can't be blank")
       end
 
       it "post_codeにハイフンがない場合保存できない" do
