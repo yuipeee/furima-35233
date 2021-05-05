@@ -1,7 +1,13 @@
 class OrdersController < ApplicationController
+
   def index
     @order_shipping = OrderShipping.new
     @item = Item.find(params[:item_id])
+    if current_user
+      redirect_to root_path
+    else 
+      render file:"/devise/sessions/new"
+    end
   end
 
   def create
