@@ -15,6 +15,7 @@ RSpec.describe OrderShipping, type: :model do
       end
 
       it "building_nameが存在しなくても登録できる" do
+        @shipping.building_name = ""
         expect(@shipping).to be_valid
       end
     end
