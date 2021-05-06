@@ -13,6 +13,10 @@ RSpec.describe OrderShipping, type: :model do
       it "post_code、shipping_area_id、city、address、phone_number,tokenが存在すれば登録できる" do
         expect(@shipping).to be_valid
       end
+
+      it "building_nameが存在しなくても登録できる" do
+        expect(@shipping).to be_valid
+      end
     end
 
     context '保存できない場合' do
@@ -23,7 +27,7 @@ RSpec.describe OrderShipping, type: :model do
       end
 
       it "shipping_area_idが未選択では保存できない" do
-        @shipping.shipping_area_id = ''
+        @shipping.shipping_area_id = nil
         @shipping.valid?
         expect(@shipping.errors.full_messages).to include("Shipping area can't be blank")
       end
@@ -58,10 +62,34 @@ RSpec.describe OrderShipping, type: :model do
         expect(@shipping.errors.full_messages).to include("Post code is invalid")
       end
 
-      it "phone_numberが11桁以上では保存できない" do
-        @shipping.phone_number = '090123456789'
+      it "phone_numberが12桁以上では保存できない" do
+        @shipping.phone_number = '0900123456789'
         @shipping.valid?
         expect(@shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "phone_numberが9桁以下では保存できない" do
+        @shipping.phone_number = '090'
+        @shipping.valid?
+        expect(@shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "phone_numberが英数混合では保存できない" do
+        @shipping.phone_number = '0901234567a'
+        @shipping.valid?
+        expect(@shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "user_idがない場合は保存できない" do
+        @shipping.user_id = nil
+        @shipping.valid?
+        expect(@shipping.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "item_idがない場合は保存できない" do
+        @shipping.item_id = nil
+        @shipping.valid?
+        expect(@shipping.errors.full_messages).to include("Item can't be blank")
       end
 
     end  
