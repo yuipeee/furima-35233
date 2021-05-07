@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates :image
   validates :name
   validates :description
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 9999999 },format: { with:/\A[0-9]+\Z/ }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },format: { with:/\A[0-9]+\Z/ }
   validates :category_id
   validates :status_id
   validates :shipping_cost_id
